@@ -1,4 +1,4 @@
-![logo_easyblog](https://github.com/toilemaker/easy_toile_/logo/logo.png?raw=true)
+![logo_easytoile](https://github.com/toilemaker/easy_toile_/tree/main/logologo.png?raw=true)
 
 # easy_toile_
 easy toile creation
