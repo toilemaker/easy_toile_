@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', Consolas, Monaco, 'Courier New', monospace;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Amélioration de la lisibilité des champs de formulaire */
+input[type="text"],
+input[type="email"],
+textarea,
+select {
+  color: #1f2937 !important;
+  background-color: #ffffff !important;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+textarea::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Style pour les options des select */
+option {
+  color: #1f2937 !important;
+  background-color: #ffffff !important;
+}
+
+/* Personnalisation de la taille de police text-sm */
+.text-sm {
+  font-size: 0.775rem !important;
+}
