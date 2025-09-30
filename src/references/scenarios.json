@@ -1,0 +1,89 @@
+{
+    "scenarios": [
+        {
+            "id": "scenario1",
+            "name": "Scénario 1",
+            "description": "Premier scénario de test",
+            "timeRange": {
+                "start": 0,
+                "end": 100
+            },
+            "nodes": [
+                {
+                    "id": "node1",
+                    "time": {
+                        "start": 0,
+                        "end": 60
+                    }
+                },
+                {
+                    "id": "node2",
+                    "time": {
+                        "start": 20,
+                        "end": 80
+                    }
+                }
+            ],
+            "links": [
+                {
+                    "source": { "id": "node1" },
+                    "target": { "id": "node2" },
+                    "time": {
+                        "start": 25,
+                        "end": 60
+                    }
+                }
+            ]
+        },
+        {
+            "id": "scenario2",
+            "name": "Scénario 2",
+            "description": "Deuxième scénario de test",
+            "timeRange": {
+                "start": 0,
+                "end": 200
+            },
+            "nodes": [
+                {
+                    "id": "node1",
+                    "time": {
+                        "start": 0,
+                        "end": 100
+                    }
+                },
+                {
+                    "id": "node2",
+                    "time": {
+                        "start": 50,
+                        "end": 150
+                    }
+                },
+                {
+                    "id": "node3",
+                    "time": {
+                        "start": 100,
+                        "end": 200
+                    }
+                }
+            ],
+            "links": [
+                {
+                    "source": { "id": "node1" },
+                    "target": { "id": "node2" },
+                    "time": {
+                        "start": 50,
+                        "end": 100
+                    }
+                },
+                {
+                    "source": { "id": "node2" },
+                    "target": { "id": "node3" },
+                    "time": {
+                        "start": 100,
+                        "end": 150
+                    }
+                }
+            ]
+        }
+    ]
+}

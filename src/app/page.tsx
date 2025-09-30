@@ -22,6 +22,17 @@ export type GraphData = {
   nodeColumns?: string[]
   linkColumns?: string[]
   projectSettings?: ProjectSettings
+  visualizationLib?: string
+  filters?: Array<{
+    id: string
+    target: 'nodes' | 'links'
+    type: 'qualitative' | 'quantitative'
+    column: string
+    title: string
+    enabled?: boolean
+  }>
+  processedNodes?: any[]
+  processedLinks?: any[]
 }
 
 export default function Home() {

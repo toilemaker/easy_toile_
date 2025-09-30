@@ -15,19 +15,19 @@ export default function MappingScreen({ data, onComplete, onBack }: MappingScree
   const logoHeight = 18 // en unités Tailwind
 
   const [nodeMapping, setNodeMapping] = useState<Record<string, string>>({
-    id: data.nodeColumns?.[0] || '',
-    label: data.nodeColumns?.[1] || '',
-    color: '',
-    size: ''
+    id: data.nodeMapping?.id || data.nodeColumns?.[0] || '',
+    label: data.nodeMapping?.label || data.nodeColumns?.[1] || '',
+    color: data.nodeMapping?.color || '',
+    size: data.nodeMapping?.size || ''
   })
   
-  const [selectedVisualizationLib, setSelectedVisualizationLib] = useState('d3js')
+  const [selectedVisualizationLib, setSelectedVisualizationLib] = useState(data.visualizationLib || 'd3js')
   
   const [linkMapping, setLinkMapping] = useState<Record<string, string>>({
-    source: data.linkColumns?.[0] || '',
-    target: data.linkColumns?.[1] || '',
-    weight: '',
-    color: ''
+    source: data.linkMapping?.source || data.linkColumns?.[0] || '',
+    target: data.linkMapping?.target || data.linkColumns?.[1] || '',
+    weight: data.linkMapping?.weight || '',
+    color: data.linkMapping?.color || ''
   })
 
   const [previewData, setPreviewData] = useState({
@@ -43,7 +43,45 @@ export default function MappingScreen({ data, onComplete, onBack }: MappingScree
     column: string
     title: string
     enabled?: boolean
-  }>>([])
+  }>>(data.filters || []);
+
+  // ✨ Effet pour synchroniser les états avec les données reçues
+  useEffect(() => {
+    if (data.nodeMapping) {
+      setNodeMapping({
+        id: data.nodeMapping.id || data.nodeColumns?.[0] || '',
+        label: data.nodeMapping.label || data.nodeColumns?.[1] || '',
+        color: data.nodeMapping.color || '',
+        size: data.nodeMapping.size || ''
+      })
+    }
+    
+    if (data.linkMapping) {
+      setLinkMapping({
+        source: data.linkMapping.source || data.linkColumns?.[0] || '',
+        target: data.linkMapping.target || data.linkColumns?.[1] || '',
+        weight: data.linkMapping.weight || '',
+        color: data.linkMapping.color || ''
+      })
+    }
+    
+    if (data.visualizationLib) {
+      setSelectedVisualizationLib(data.visualizationLib)
+    }
+    
+    if (data.filters) {
+      setFilters(data.filters)
+    }
+  }, [data])
+
+  // ✨ Debug: Afficher les données reçues
+  useEffect(() => {
+    console.log('=== MAPPING SCREEN - DONNÉES REÇUES ===')
+    console.log('nodeMapping:', data.nodeMapping)
+    console.log('linkMapping:', data.linkMapping)
+    console.log('visualizationLib:', data.visualizationLib)
+    console.log('filters:', data.filters)
+  }, [data])
 
   // Cibles de filtres disponibles
   const filterTargets = [
@@ -549,7 +587,7 @@ export default function MappingScreen({ data, onComplete, onBack }: MappingScree
                     Apache ECharts
                   </label>
                   <span className="ml-2 px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded">
-                    Nouveau
+                    En cours
                   </span>
                 </div>
                 <div className="flex items-center">
@@ -566,7 +604,7 @@ export default function MappingScreen({ data, onComplete, onBack }: MappingScree
                     GoJS v1 - Production Process
                   </label>
                   <span className="ml-2 px-2 py-1 text-xs bg-green-100 text-green-800 rounded">
-                    Nouveau
+                    En cours
                   </span>
                 </div>
                 <div className="flex items-center">
@@ -583,7 +621,7 @@ export default function MappingScreen({ data, onComplete, onBack }: MappingScree
                     amCharts - Force Directed Tree
                   </label>
                   <span className="ml-2 px-2 py-1 text-xs bg-purple-100 text-purple-800 rounded">
-                    Bullets animés
+                    En cours
                   </span>
                 </div>
                 <div className="flex items-center">
@@ -600,24 +638,7 @@ export default function MappingScreen({ data, onComplete, onBack }: MappingScree
                     amCharts - Hierarchy Layout
                   </label>
                   <span className="ml-2 px-2 py-1 text-xs bg-indigo-100 text-indigo-800 rounded">
-                    Hiérarchique
-                  </span>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    type="radio"
-                    id="jointjs"
-                    name="visualizationLib"
-                    value="jointjs"
-                    checked={selectedVisualizationLib === 'jointjs'}
-                    onChange={(e) => setSelectedVisualizationLib(e.target.value)}
-                    className="mr-3 text-blue-600"
-                  />
-                  <label htmlFor="jointjs" className="text-sm font-medium text-gray-700">
-                    JointJS - Routing Demo
-                  </label>
-                  <span className="ml-2 px-2 py-1 text-xs bg-green-100 text-green-800 rounded">
-                    Libavoid
+                    En cours
                   </span>
                 </div>
                 <div className="flex items-center opacity-50">

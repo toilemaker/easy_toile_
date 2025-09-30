@@ -7,7 +7,6 @@ import EChartsVisualization from './EChartsVisualization'
 import GoJSVisualization from './GoJSVisualization'
 import AmChartsVisualization from './AmChartsVisualization'
 import AmChartsHierarchyVisualization from './AmChartsHierarchyVisualization'
-import JointJSVisualization from './JointJSVisualization'
 
 interface VisualizationScreenProps {
   data: any
@@ -239,7 +238,7 @@ export default function VisualizationScreen({ data, onBack, onExport }: Visualiz
       .data(filteredData.nodes)
       .enter()
       .append('text')
-      .text((d: any) => d.label)
+      .text((d: any) => data.visualizationLib === 'd3js' ? d.id : d.label)
       .attr('font-size', 12)
       .attr('font-family', 'var(--font-jetbrains-mono), JetBrains Mono, monospace')
       .attr('text-anchor', 'middle')
@@ -561,8 +560,6 @@ export default function VisualizationScreen({ data, onBack, onExport }: Visualiz
       <AmChartsVisualization data={{processedNodes: filteredData.nodes, processedLinks: filteredData.links}} />
     ) : data.visualizationLib === 'amcharts-hierarchy' ? (
       <AmChartsHierarchyVisualization data={{processedNodes: filteredData.nodes, processedLinks: filteredData.links}} />
-    ) : data.visualizationLib === 'jointjs' ? (
-      <JointJSVisualization data={{processedNodes: filteredData.nodes, processedLinks: filteredData.links}} />
     ) : (
       <svg
         ref={svgRef}

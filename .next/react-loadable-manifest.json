@@ -4,11 +4,5 @@
     "files": [
       "static/chunks/_app-pages-browser_node_modules_echarts_index_js.js"
     ]
-  },
-  "components\\JointJSVisualization.tsx -> @joint/core": {
-    "id": "components\\JointJSVisualization.tsx -> @joint/core",
-    "files": [
-      "static/chunks/_app-pages-browser_node_modules_joint_core_joint_mjs.js"
-    ]
   }
 }
